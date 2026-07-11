@@ -1,0 +1,129 @@
+# Reading C:/altera/13.0sp1/modelsim_ase/tcl/vsim/pref.tcl 
+# do CacheCTRL_run_msim_rtl_verilog.do 
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Copying C:\altera\13.0sp1\modelsim_ase\win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# ** Warning: Copied C:\altera\13.0sp1\modelsim_ase\win32aloem/../modelsim.ini to modelsim.ini.
+#          Updated modelsim.ini.
+# 
+# vlog -vlog01compat -work work +incdir+C:/Users/ASUS/Downloads/doan {C:/Users/ASUS/Downloads/doan/controller.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module controller
+# 
+# Top level modules:
+# 	controller
+# vlog -vlog01compat -work work +incdir+C:/Users/ASUS/Downloads/Cache/Cache {C:/Users/ASUS/Downloads/Cache/Cache/address_logic.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module address_logic
+# 
+# Top level modules:
+# 	address_logic
+# vlog -vlog01compat -work work +incdir+C:/Users/ASUS/Downloads/Cache/Cache {C:/Users/ASUS/Downloads/Cache/Cache/cache_memory.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module cache_memory
+# 
+# Top level modules:
+# 	cache_memory
+# vlog -vlog01compat -work work +incdir+C:/Users/ASUS/Downloads/Cache/Cache {C:/Users/ASUS/Downloads/Cache/Cache/comparator.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module comparator
+# 
+# Top level modules:
+# 	comparator
+# vlog -vlog01compat -work work +incdir+C:/Users/ASUS/Downloads/Cache/Cache {C:/Users/ASUS/Downloads/Cache/Cache/data_ram_1024x16.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module data_ram_1024x16
+# 
+# Top level modules:
+# 	data_ram_1024x16
+# vlog -vlog01compat -work work +incdir+C:/Users/ASUS/Downloads/Cache/Cache {C:/Users/ASUS/Downloads/Cache/Cache/tag_ram_1024x12.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module tag_ram_1024x12
+# 
+# Top level modules:
+# 	tag_ram_1024x12
+# vlog -vlog01compat -work work +incdir+C:/Users/ASUS/Downloads/Cache/Cache {C:/Users/ASUS/Downloads/Cache/Cache/datapath_top.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module datapath_top
+# 
+# Top level modules:
+# 	datapath_top
+# vlog -vlog01compat -work work +incdir+C:/Users/ASUS/Downloads/Cache/Cache {C:/Users/ASUS/Downloads/Cache/Cache/cache_system_top.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module cache_system_top
+# 
+# Top level modules:
+# 	cache_system_top
+# vlog -vlog01compat -work work +incdir+C:/Users/ASUS/Downloads/Cache/Cache {C:/Users/ASUS/Downloads/Cache/Cache/issp.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module issp
+# 
+# Top level modules:
+# 	issp
+# vlog -vlog01compat -work work +incdir+C:/Users/ASUS/Downloads/Cache/Cache {C:/Users/ASUS/Downloads/Cache/Cache/DE2_Cache_Tester.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module DE2_Cache_Tester
+# 
+# Top level modules:
+# 	DE2_Cache_Tester
+# vlog -vlog01compat -work work +incdir+C:/Users/ASUS/Downloads/Cache/Cache {C:/Users/ASUS/Downloads/Cache/Cache/sdram_controller_ip.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module sdram_controller_ip
+# 
+# Top level modules:
+# 	sdram_controller_ip
+# 
+# vlog -vlog01compat -work work +incdir+C:/Users/ASUS/Downloads/Cache/Cache {C:/Users/ASUS/Downloads/Cache/Cache/cache_system_top_tb.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module cache_system_top_tb
+# 
+# Top level modules:
+# 	cache_system_top_tb
+# 
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneii_ver -L rtl_work -L work -voptargs="+acc"  cache_system_top_tb
+# vsim -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneii_ver -L rtl_work -L work -voptargs=\"+acc\" -t 1ps cache_system_top_tb 
+# Loading work.cache_system_top_tb
+# Loading work.cache_system_top
+# Loading work.controller
+# Loading work.datapath_top
+# Loading work.address_logic
+# Loading work.cache_memory
+# Loading work.data_ram_1024x16
+# Loading altera_mf_ver.altsyncram
+# Loading altera_mf_ver.ALTERA_DEVICE_FAMILIES
+# Loading altera_mf_ver.ALTERA_MF_MEMORY_INITIALIZATION
+# Loading work.tag_ram_1024x12
+# Loading work.comparator
+# 
+# add wave *
+# view structure
+# .main_pane.structure.interior.cs.body.struct
+# view signals
+# .main_pane.objects.interior.cs.body.tree
+# run -all
+# ==================================================
+#    BAT DAU KIEM THU CACHE SYSTEM
+# ==================================================
+# 
+# --- KICH BAN 1: READ MISS ---
+# [90000] CPU READ: Dia chi 000001 -> Du lieu: 0000 | State hien tai: 1
+# 
+# --- KICH BAN 2: READ HIT ---
+# [210000] CPU READ: Dia chi 000001 -> Du lieu: 0011 | State hien tai: 0
+# 
+# --- KICH BAN 3: WRITE HIT (Bat co Dirty) ---
+# [270000] CPU WRITE: Ghi thanh cong aaaa vao dia chi 000001 | State hien tai: 1
+# 
+# --- KICH BAN 4: CONFLICT MISS & WRITE-BACK ---
+# [330000] CPU READ: Dia chi 040001 -> Du lieu: 0011 | State hien tai: 1
+# 
+# ==================================================
+#    MO PHONG KET THUC!
+# ==================================================
+# Break in Module cache_system_top_tb at C:/Users/ASUS/Downloads/Cache/Cache/cache_system_top_tb.v line 151
+# Simulation Breakpoint: Break in Module cache_system_top_tb at C:/Users/ASUS/Downloads/Cache/Cache/cache_system_top_tb.v line 151
+# MACRO ./CacheCTRL_run_msim_rtl_verilog.do PAUSED at line 27

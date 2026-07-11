@@ -1,0 +1,14 @@
+
+State Machine - |DE2_Cache_Tester|sdram_controller_ip:sdram_ctrl_inst|current_state
+Name current_state.STATE_IDLE current_state.STATE_DONE current_state.STATE_WAIT 
+current_state.STATE_IDLE 0 0 0 
+current_state.STATE_WAIT 1 0 1 
+current_state.STATE_DONE 1 1 0 
+
+State Machine - |DE2_Cache_Tester|cache_system_top:cache_core|controller:cache_ctrl_inst|current_state
+Name current_state.MEM_READ current_state.WRITE_BACK current_state.COMPARE_TAG current_state.IDLE current_state.UPDATE_CACHE 
+current_state.IDLE 0 0 0 0 0 
+current_state.COMPARE_TAG 0 0 1 1 0 
+current_state.WRITE_BACK 0 1 0 1 0 
+current_state.MEM_READ 1 0 0 1 0 
+current_state.UPDATE_CACHE 0 0 0 1 1 

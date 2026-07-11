@@ -1,0 +1,105 @@
+module DE2_Cache_Tester (
+    input wire CLOCK_50,    // Pin N2 (Xung clock 50 MHz trên kit DE2)
+    input wire [0:0] KEY,   // Pin G26 (Nút nhấn làm tín hiệu Reset chân thấp)
+    
+    // ==========================================
+    // Giao tiếp với chip SRAM vật lý trên kit DE2
+    // ==========================================
+    output wire [17:0] SRAM_ADDR,
+    inout  wire [15:0] SRAM_DQ,
+    output wire SRAM_WE_N,
+    output wire SRAM_OE_N,
+    output wire SRAM_UB_N,
+    output wire SRAM_LB_N,
+    output wire SRAM_CE_N
+);
+
+    // ==========================================
+    // Khai báo các dây nối nội bộ (Internal Wires)
+    // ==========================================
+    // Tín hiệu điều khiển ảo phát ra từ IP Core (Tổng: 40 bits)
+    wire [39:0] issp_source;
+    
+    wire cpu_rd;               // 1 bit  (issp_source[39])
+    wire cpu_wr;               // 1 bit  (issp_source[38])
+    wire [21:0] cpu_addr;      // 22 bits (issp_source[37:16])
+    wire [15:0] cpu_data_in;   // 16 bits (issp_source[15:0])
+
+    // Tín hiệu phản hồi ảo đưa vào IP Core (Tổng: 17 bits)
+    wire [16:0] issp_probe;
+    
+    wire [15:0] cpu_data_out;  // 16 bits (issp_probe[16:1])
+    wire cpu_wait;            // 1 bit  (issp_probe[0])
+
+    // Đường kết nối giữa Cache và SRAM vật lý
+    wire sram_rd_en, sram_wr_en;
+    wire [21:0] cache_sram_addr;
+    wire [15:0] sram_data_from_cache, sram_data_to_cache;
+
+    // ==========================================
+    // 1. Ánh xạ dữ liệu tách/ghép từ IP Core ISSP
+    // ==========================================
+    // Tách Bus Source 40-bit thành các tín hiệu điều khiển đơn lẻ
+    assign cpu_rd      = issp_source[39];
+    assign cpu_wr      = issp_source[38];
+    assign cpu_addr    = issp_source[37:16];
+    assign cpu_data_in = issp_source[15:0];
+
+    // Ghép các tín hiệu cần quan sát vào Bus Probe 17-bit
+    assign issp_probe  = {cpu_data_out, cpu_wait};
+
+
+    // ==========================================
+    // 2. Logic điều khiển SRAM cứng trên board DE2
+    // ==========================================
+    assign SRAM_CE_N = 1'b0; // Luôn tích cực chip SRAM
+    assign SRAM_UB_N = 1'b0; // Cho phép truy cập Byte cao
+    assign SRAM_LB_N = 1'b0; // Cho phép truy cập Byte thấp
+    
+    // SRAM của Altera tích cực mức thấp (Low) nên phải đảo trạng thái
+    assign SRAM_WE_N = ~sram_wr_en;
+    assign SRAM_OE_N = ~sram_rd_en;
+    
+    // Chip SRAM trên DE2 có dung lượng 512KB nên chỉ dùng tối đa 18-bit địa chỉ
+    assign SRAM_ADDR = cache_sram_addr[17:0]; 
+
+    // Điều khiển bus dữ liệu hai chiều (Tri-state buffer)
+    assign SRAM_DQ = sram_wr_en ? sram_data_from_cache : 16'bz;
+    assign sram_data_to_cache = SRAM_DQ;
+
+
+    // ==========================================
+    // 3. Khởi tạo IP Core ISSP vừa tạo
+    // ==========================================
+    // Lưu ý: Tên module "issp_sim" phải trùng với tên bạn đặt lúc tạo IP
+    issp issp_inst (
+        .probe  (issp_probe),   // Đưa bus 17-bit lên máy tính
+        .source (issp_source)   // Nhận bus 40-bit từ máy tính xuống
+    );
+
+
+    // ==========================================
+    // 4. Khởi tạo khối Hệ thống Cache (DUT)
+    // ==========================================
+    cache_system_top cache_core (
+        .clk(CLOCK_50),
+        .reset_n(KEY[0]),
+        
+        // Kết nối luồng CPU ảo (từ ISSP)
+        .cpu_rd(cpu_rd),
+        .cpu_wr(cpu_wr),
+        .cpu_addr(cpu_addr),
+        .cpu_data_in(cpu_data_in),
+        .cpu_data_out(cpu_data_out),
+        .cpu_wait(cpu_wait),
+        
+        // Kết nối luồng SRAM cứng trên Board
+        .sram_ready(1'b1), // SRAM vật lý phản hồi rất nhanh, coi như luôn sẵn sàng
+        .sram_data_out(sram_data_to_cache),
+        .sram_data_in(sram_data_from_cache),
+        .sram_addr_ext(cache_sram_addr),
+        .sram_rd_en(sram_rd_en),
+        .sram_wr_en(sram_wr_en)
+    );
+
+endmodule

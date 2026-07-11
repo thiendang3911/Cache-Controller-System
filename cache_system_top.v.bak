@@ -1,0 +1,98 @@
+module cache_system_top (
+    input wire clk,
+    input wire reset_n,
+    
+    // ==========================================
+    // Giao tiếp với CPU
+    // ==========================================
+    input wire cpu_rd,               // Tín hiệu yêu cầu đọc từ CPU
+    input wire cpu_wr,               // Tín hiệu yêu cầu ghi từ CPU
+    input wire [21:0] cpu_addr,      // Địa chỉ CPU yêu cầu (22-bit)
+    input wire [15:0] cpu_data_in,   // Dữ liệu CPU muốn ghi
+    output wire [15:0] cpu_data_out, // Dữ liệu trả về cho CPU
+    output wire cpu_wait,            // Tín hiệu báo CPU tạm dừng (stall)
+    
+    // ==========================================
+    // Giao tiếp với Main Memory (SRAM/SDRAM Interface)
+    // ==========================================
+    input wire sram_ready,           // Tín hiệu báo SRAM/SDRAM đã sẵn sàng
+    input wire [15:0] sram_data_out, // Dữ liệu đọc từ SRAM/SDRAM lên Cache
+    output wire [15:0] sram_data_in, // Dữ liệu từ Cache ghi ngược xuống SRAM/SDRAM
+    output wire [21:0] sram_addr_ext,// Địa chỉ cấp cho SRAM/SDRAM
+    output wire sram_rd_en,          // Tín hiệu cho phép đọc SRAM/SDRAM
+    output wire sram_wr_en           // Tín hiệu cho phép ghi SRAM/SDRAM
+);
+
+    // ==========================================
+    // Khai báo các tín hiệu kết nối nội bộ (Internal Wires)
+    // ==========================================
+    wire hit_or_miss;
+    wire dirty_bit_in;
+    wire cache_we;
+    wire tag_we;
+    wire status_we;
+    wire sel_addr;
+    wire set_dirty;
+    wire clear_dirty;
+
+    // ==========================================
+    // Khởi tạo Module Điều khiển (Controller FSM)
+    // ==========================================
+    controller cache_ctrl_inst (
+        .clk(clk),
+        .reset_n(reset_n),
+        
+        // Giao tiếp CPU
+        .cpu_rd(cpu_rd),
+        .cpu_wr(cpu_wr),
+        .cpu_wait(cpu_wait),
+        
+        // Phản hồi từ Datapath
+        .hit_or_miss(hit_or_miss),
+        .dirty_bit_in(dirty_bit_in),
+        
+        // Giao tiếp SRAM/SDRAM
+        .sram_ready(sram_ready),
+        .sram_rd_en(sram_rd_en),
+        .sram_wr_en(sram_wr_en),
+        
+        // Tín hiệu điều khiển Datapath
+        .cache_we(cache_we),
+        .tag_we(tag_we),
+        .status_we(status_we),
+        .sel_addr(sel_addr),
+        .set_dirty(set_dirty),
+        .clear_dirty(clear_dirty)
+    );
+
+    // ==========================================
+    // Khởi tạo Module Đường dẫn dữ liệu (Datapath)
+    // ==========================================
+    datapath_top cache_dp_inst (
+        .clk(clk),
+        .reset_n(reset_n),
+        
+        // Giao tiếp CPU
+        .cpu_addr(cpu_addr),
+        .cpu_data_in(cpu_data_in),
+        .cpu_data_out(cpu_data_out),
+        
+        // Giao tiếp SRAM/SDRAM
+        .sram_data_out(sram_data_out),
+        .sram_data_in(sram_data_in),
+        .sram_addr_ext(sram_addr_ext),
+        
+        // Tín hiệu điều khiển từ FSM (Controller)
+        .cache_we(cache_we),
+        .tag_we(tag_we),
+        .status_we(status_we),
+        .sel_addr(sel_addr),
+        .set_dirty(set_dirty),
+        .clear_dirty(clear_dirty),
+        
+        // Phản hồi về FSM (Controller)
+        .hit_or_miss(hit_or_miss),
+        .dirty_bit_in(dirty_bit_in)
+    );
+
+endmodule

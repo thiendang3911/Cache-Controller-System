@@ -1,0 +1,30 @@
+module cache_memory (
+    input clk,
+    input [9:0] index,
+    input [11:0] tag_in,
+    input [15:0] data_in,
+    input cache_we, tag_we, status_we,
+    input set_dirty, clear_dirty, // Điều khiển bit Dirty
+    output [11:0] tag_out,
+    output [15:0] data_out,
+    output valid_out, dirty_out
+);
+    reg [15:0] data_ram [0:1023];
+    reg [11:0] tag_ram [0:1023];
+    reg [1023:0] v_bits, d_bits;
+
+    assign data_out = data_ram[index];
+    assign tag_out  = tag_ram[index];
+    assign valid_out = v_bits[index];
+    assign dirty_out = d_bits[index];
+
+    always @(posedge clk) begin
+        if (cache_we)  data_ram[index] <= data_in;
+        if (tag_we)    tag_ram[index]  <= tag_in;
+        if (status_we) begin
+            v_bits[index] <= 1'b1; // Luôn set Valid khi Update
+            if (set_dirty) d_bits[index] <= 1'b1;
+            if (clear_dirty) d_bits[index] <= 1'b0;
+        end
+    end
+endmodule

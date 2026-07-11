@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="CacheCTRL">
+		<CBX_INST_ENTRY INSTANCE_NAME="|DE2_Cache_Tester|cache_system_top:cache_core|datapath_top:cache_dp_inst|cache_memory:mem_unit|data_ram_1024x16:my_data_ram|altsyncram:altsyncram_component" CBX_FILE_NAME="altsyncram_arc1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|DE2_Cache_Tester|cache_system_top:cache_core|datapath_top:cache_dp_inst|cache_memory:mem_unit|tag_ram_1024x12:my_tag_ram|altsyncram:altsyncram_component" CBX_FILE_NAME="altsyncram_6rc1.tdf"/>
+	</PROJECT>
+</LOG_ROOT>

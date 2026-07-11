@@ -1,0 +1,16 @@
+Fitter Status : Successful - Tue May 19 15:22:58 2026
+Quartus II 64-Bit Version : 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition
+Revision Name : CacheCTRL
+Top-level Entity Name : DE2_Cache_Tester
+Family : Cyclone II
+Device : EP2C35F672C6
+Timing Models : Final
+Total logic elements : 3,813 / 33,216 ( 11 % )
+    Total combinational functions : 3,785 / 33,216 ( 11 % )
+    Dedicated logic registers : 2,259 / 33,216 ( 7 % )
+Total registers : 2259
+Total pins : 43 / 475 ( 9 % )
+Total virtual pins : 0
+Total memory bits : 28,672 / 483,840 ( 6 % )
+Embedded Multiplier 9-bit elements : 0 / 70 ( 0 % )
+Total PLLs : 0 / 4 ( 0 % )

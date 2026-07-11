@@ -1,0 +1,246 @@
+m255
+K3
+13
+cModel Technology
+Z0 dC:\Users\ASUS\Downloads\Cache\Cache\simulation\modelsim
+vaddress_logic
+I2Sfh:=mAgPlnV@oj^oYm61
+Vb>Z5b>8_e3[j?4io@@Q`70
+Z1 dC:\Users\ASUS\Downloads\Cache\Cache\simulation\modelsim
+w1779123882
+8C:/Users/ASUS/Downloads/Cache/Cache/address_logic.v
+FC:/Users/ASUS/Downloads/Cache/Cache/address_logic.v
+L0 1
+Z2 OV;L;10.1d;51
+r1
+31
+Z3 o-vlog01compat -work work -O0
+Z4 !s92 -vlog01compat -work work +incdir+C:/Users/ASUS/Downloads/Cache/Cache -O0
+!i10b 1
+!s100 dUj;7_T=]h8k3hIcNR8]b3
+!s85 0
+!s108 1779165358.946000
+!s107 C:/Users/ASUS/Downloads/Cache/Cache/address_logic.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/ASUS/Downloads/Cache/Cache|C:/Users/ASUS/Downloads/Cache/Cache/address_logic.v|
+!s101 -O0
+vcache_memory
+ICcQMeN`GSAe9KE?]CC4NP3
+V151^D6g=b3M4]43e4D[<Y2
+R1
+w1775891106
+8C:/Users/ASUS/Downloads/Cache/Cache/cache_memory.v
+FC:/Users/ASUS/Downloads/Cache/Cache/cache_memory.v
+L0 1
+R2
+r1
+31
+R3
+R4
+!i10b 1
+!s100 Doi<`NknMj89c66lHaH0Z3
+!s85 0
+!s108 1779165359.002000
+!s107 C:/Users/ASUS/Downloads/Cache/Cache/cache_memory.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/ASUS/Downloads/Cache/Cache|C:/Users/ASUS/Downloads/Cache/Cache/cache_memory.v|
+!s101 -O0
+vcache_system_top
+Inj?OFCBZm6QKfKia;ThNa0
+VXIaX`]UhAJkbD<^MXW3Nl3
+R1
+w1779123804
+8C:/Users/ASUS/Downloads/Cache/Cache/cache_system_top.v
+FC:/Users/ASUS/Downloads/Cache/Cache/cache_system_top.v
+L0 1
+R2
+r1
+31
+R3
+R4
+!i10b 1
+!s100 h?T@i3>WkiH?[OLJ<A3cR2
+!s85 0
+!s108 1779165359.318000
+!s107 C:/Users/ASUS/Downloads/Cache/Cache/cache_system_top.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/ASUS/Downloads/Cache/Cache|C:/Users/ASUS/Downloads/Cache/Cache/cache_system_top.v|
+!s101 -O0
+vcache_system_top_tb
+!i10b 1
+!s100 4omk<Z;<DED0JACcjC4k`1
+IR=oWJYWz5JSG3ALRj5c[K1
+VQecS:_5Wd<J]e]2LDdU6V1
+R1
+w1779128280
+8C:/Users/ASUS/Downloads/Cache/Cache/cache_system_top_tb.v
+FC:/Users/ASUS/Downloads/Cache/Cache/cache_system_top_tb.v
+L0 3
+R2
+r1
+!s85 0
+31
+!s108 1779165359.586000
+!s107 C:/Users/ASUS/Downloads/Cache/Cache/cache_system_top_tb.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/ASUS/Downloads/Cache/Cache|C:/Users/ASUS/Downloads/Cache/Cache/cache_system_top_tb.v|
+!s101 -O0
+R3
+R4
+vcomparator
+IHa^m;zEUDoX4T^do5jl=a1
+V;ERjZg8=ePgH2aeQzVjPO0
+R1
+w1775889468
+8C:/Users/ASUS/Downloads/Cache/Cache/comparator.v
+FC:/Users/ASUS/Downloads/Cache/Cache/comparator.v
+L0 1
+R2
+r1
+31
+R3
+R4
+!i10b 1
+!s100 JPRk^kzE2]jf=9k>bW`OH3
+!s85 0
+!s108 1779165359.064000
+!s107 C:/Users/ASUS/Downloads/Cache/Cache/comparator.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/ASUS/Downloads/Cache/Cache|C:/Users/ASUS/Downloads/Cache/Cache/comparator.v|
+!s101 -O0
+vcontroller
+IUX_`fk<Ge?g^OEQG[zSbC1
+VPRX;R4k_^mmC?Yf[@@@BT2
+R1
+w1779124033
+8C:/Users/ASUS/Downloads/doan/controller.v
+FC:/Users/ASUS/Downloads/doan/controller.v
+L0 1
+R2
+r1
+31
+R3
+!i10b 1
+!s100 hXf<L2=DR<<=j[U]QR1oU0
+!s85 0
+!s108 1779165358.827000
+!s107 C:/Users/ASUS/Downloads/doan/controller.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/ASUS/Downloads/doan|C:/Users/ASUS/Downloads/doan/controller.v|
+!s101 -O0
+!s92 -vlog01compat -work work +incdir+C:/Users/ASUS/Downloads/doan -O0
+vdata_ram_1024x16
+I02SLUPH@DJW4E2TRPE3151
+V^G^i?[T`PoDGZ4aFHJ`M`1
+R1
+w1775890906
+8C:/Users/ASUS/Downloads/Cache/Cache/data_ram_1024x16.v
+FC:/Users/ASUS/Downloads/Cache/Cache/data_ram_1024x16.v
+L0 39
+R2
+r1
+31
+R3
+R4
+!i10b 1
+!s100 h>VQKS5DB^kUDk@]i;?FP2
+!s85 0
+!s108 1779165359.128000
+!s107 C:/Users/ASUS/Downloads/Cache/Cache/data_ram_1024x16.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/ASUS/Downloads/Cache/Cache|C:/Users/ASUS/Downloads/Cache/Cache/data_ram_1024x16.v|
+!s101 -O0
+vdatapath_top
+I4cK<P6`>Ae8XkScEnCO8T2
+VFUBE<`jgMdO2@[hoWRd;d2
+R1
+w1779123858
+8C:/Users/ASUS/Downloads/Cache/Cache/datapath_top.v
+FC:/Users/ASUS/Downloads/Cache/Cache/datapath_top.v
+L0 1
+R2
+r1
+31
+R3
+R4
+!i10b 1
+!s100 :lI9O2n[zdL]^>CnB>U_a1
+!s85 0
+!s108 1779165359.255000
+!s107 C:/Users/ASUS/Downloads/Cache/Cache/datapath_top.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/ASUS/Downloads/Cache/Cache|C:/Users/ASUS/Downloads/Cache/Cache/datapath_top.v|
+!s101 -O0
+vDE2_Cache_Tester
+ITN1GGiVT?]Zie73<XW5lg3
+VQ2U@bF5gE2aFLQ5gm@^kZ3
+R1
+w1779128807
+8C:/Users/ASUS/Downloads/Cache/Cache/DE2_Cache_Tester.v
+FC:/Users/ASUS/Downloads/Cache/Cache/DE2_Cache_Tester.v
+L0 1
+R2
+r1
+31
+R3
+R4
+n@d@e2_@cache_@tester
+!i10b 1
+!s100 NX_9W`aH;O?@1kTn>ZhIa3
+!s85 0
+!s108 1779165359.446000
+!s107 C:/Users/ASUS/Downloads/Cache/Cache/DE2_Cache_Tester.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/ASUS/Downloads/Cache/Cache|C:/Users/ASUS/Downloads/Cache/Cache/DE2_Cache_Tester.v|
+!s101 -O0
+vissp
+Iol3<oCT_Kz3`ZHVa?j;nP3
+VBMRA[@OEJ<L3F^cMkT[Fi2
+R1
+w1779005873
+8C:/Users/ASUS/Downloads/Cache/Cache/issp.v
+FC:/Users/ASUS/Downloads/Cache/Cache/issp.v
+L0 39
+R2
+r1
+31
+R3
+R4
+!i10b 1
+!s100 d[SeMUhzdR<gN5Xn_=46D1
+!s85 0
+!s108 1779165359.382000
+!s107 C:/Users/ASUS/Downloads/Cache/Cache/issp.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/ASUS/Downloads/Cache/Cache|C:/Users/ASUS/Downloads/Cache/Cache/issp.v|
+!s101 -O0
+vsdram_controller_ip
+IgDnCTCP[E9z5:ac?EC3:_0
+VkhcF7ZkF^1oVI;Hhi4;8B3
+R1
+w1779129858
+8C:/Users/ASUS/Downloads/Cache/Cache/sdram_controller_ip.v
+FC:/Users/ASUS/Downloads/Cache/Cache/sdram_controller_ip.v
+L0 1
+R2
+r1
+31
+R3
+R4
+!i10b 1
+!s100 lXj_cE3>I=BTNM[]6?CFD2
+!s85 0
+!s108 1779165359.508000
+!s107 C:/Users/ASUS/Downloads/Cache/Cache/sdram_controller_ip.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/ASUS/Downloads/Cache/Cache|C:/Users/ASUS/Downloads/Cache/Cache/sdram_controller_ip.v|
+!s101 -O0
+vtag_ram_1024x12
+Ilo6Pe_YQSdh<FoMO?cXAM1
+V48@HiCeHH2`43AdE[bgT]1
+R1
+w1775891050
+8C:/Users/ASUS/Downloads/Cache/Cache/tag_ram_1024x12.v
+FC:/Users/ASUS/Downloads/Cache/Cache/tag_ram_1024x12.v
+L0 39
+R2
+r1
+31
+R3
+R4
+!i10b 1
+!s100 a;RSUjzd_>j2ge:ieb?700
+!s85 0
+!s108 1779165359.192000
+!s107 C:/Users/ASUS/Downloads/Cache/Cache/tag_ram_1024x12.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/ASUS/Downloads/Cache/Cache|C:/Users/ASUS/Downloads/Cache/Cache/tag_ram_1024x12.v|
+!s101 -O0

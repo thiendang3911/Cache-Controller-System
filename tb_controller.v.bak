@@ -1,0 +1,123 @@
+`timescale 1ns / 1ps
+
+module tb_controller();
+
+    // 1. Khai báo các tín hiệu kết nối với Controller
+    reg clk;
+    reg reset_n;
+    reg cpu_rd;
+    reg cpu_wr;
+    reg hit_or_miss;
+    reg dirty_bit_in;
+    reg sram_ready;
+
+    wire cache_we, tag_we, status_we, sel_addr, set_dirty, clear_dirty;
+    wire cpu_wait, sram_rd_en, sram_wr_en;
+
+    // 2. Khởi tạo module Controller (DUT - Device Under Test)
+    controller dut (
+        .clk(clk),
+        .reset_n(reset_n),
+        .cpu_rd(cpu_rd),
+        .cpu_wr(cpu_wr),
+        .hit_or_miss(hit_or_miss),
+        .dirty_bit_in(dirty_bit_in),
+        .sram_ready(sram_ready),
+        .cache_we(cache_we),
+        .tag_we(tag_we),
+        .status_we(status_we),
+        .sel_addr(sel_addr),
+        .set_dirty(set_dirty),
+        .clear_dirty(clear_dirty),
+        .cpu_wait(cpu_wait),
+        .sram_rd_en(sram_rd_en),
+        .sram_wr_en(sram_wr_en)
+    );
+
+    // 3. Tạo xung Clock (50MHz -> chu kỳ 20ns)
+    always #10 clk = ~clk;
+
+    // 4. Kịch bản kiểm thử (Test Stimulus)
+    initial begin
+        // --- Khởi tạo hệ thống ---
+        clk = 0;
+        reset_n = 0;
+        cpu_rd = 0; cpu_wr = 0;
+        hit_or_miss = 0; dirty_bit_in = 0; sram_ready = 0;
+
+        #25 reset_n = 1; // Nhả Reset
+        $display("--- Bat dau kiem tra Controller ---");
+
+        // --- Case 1: Read Hit ---
+        // Mô tả: CPU yeu cau doc, Tag trung khop va Valid
+        @(posedge clk);
+        cpu_rd = 1;
+        hit_or_miss = 1; // Gia lap ket qua tu Comparator [cite: 34]
+        
+        @(posedge clk); // Chuyen sang COMPARE_TAG
+        cpu_rd = 0;
+        $display("[Time %t] Read Hit: FSM phai quay ve IDLE ngay lap tuc", $time);
+
+        // --- Case 2: Read Miss (Dòng Cache đang sạch - Clean) ---
+        // Mô tả: CPU doc, Miss, Dirty=0 -> Nap tu SRAM 
+        #40;
+        @(posedge clk);
+        cpu_rd = 1;
+        hit_or_miss = 0; 
+        dirty_bit_in = 0; // Dong cache chua bi sua doi [cite: 33]
+
+        @(posedge clk); // Chuyen sang COMPARE_TAG
+        cpu_rd = 0;
+        @(posedge clk); // Chuyen sang MEM_READ
+        if (sram_rd_en && cpu_wait) 
+            $display("[Time %t] Read Miss Clean: Dang trong trang thai MEM_READ", $time);
+
+        #40 sram_ready = 1; // Gia lap SRAM nap xong du lieu
+        @(posedge clk);
+        sram_ready = 0;
+        // Luc nay phai o trang thai UPDATE_CACHE: tag_we va cache_we phai bang 1 [cite: 28]
+        
+        // --- Case 3: Read Miss (Dòng Cache đang bẩn - Dirty) ---
+        // Mô tả: Miss, Dirty=1 -> Phai Write Back truoc khi MEM_READ 
+        #60;
+        @(posedge clk);
+        cpu_rd = 1;
+        hit_or_miss = 0;
+        dirty_bit_in = 1; // Du lieu cu can duoc bao toan xuong SRAM 
+
+        @(posedge clk); // COMPARE_TAG
+        cpu_rd = 0;
+        @(posedge clk); // Chuyen sang WRITE_BACK
+        if (sram_wr_en && sel_addr) // sel_addr=1 de chon tag cu 
+            $display("[Time %t] Read Miss Dirty: Dang thuc hien WRITE_BACK", $time);
+
+        #40 sram_ready = 1; 
+        @(posedge clk); sram_ready = 0; // Xong Write Back, tu dong chuyen sang MEM_READ
+        #40 sram_ready = 1;
+        @(posedge clk); sram_ready = 0; // Xong MEM_READ, chuyen sang UPDATE_CACHE
+
+        // --- Case 4: Write Hit ---
+        // Mô tả: CPU ghi vao dia chi da co trong Cache -> Set Dirty 
+        #60;
+        @(posedge clk);
+        cpu_wr = 1;
+        hit_or_miss = 1;
+
+        @(posedge clk); // COMPARE_TAG
+        cpu_wr = 0;
+        @(posedge clk); // Chuyen sang UPDATE_CACHE
+        if (set_dirty && cache_we && !tag_we)
+            $display("[Time %t] Write Hit: Da cap nhat du lieu va bat bit Dirty", $time);
+
+        #100;
+        $display("--- Hoan thanh kiem tra ---");
+        $stop;
+    end
+
+    // 5. Theo dõi các tín hiệu quan trọng (Monitor)
+    initial begin
+        $monitor("State: %b | Wait: %b | SRAM_RD: %b | SRAM_WR: %b | Cache_WE: %b", 
+                 dut.current_state, cpu_wait, sram_rd_en, sram_wr_en, cache_we);
+    end
+
+endmodule
